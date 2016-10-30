@@ -3,11 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+	.form{
+		padding: 20px 20px;
+		background-color: yellow;
+		display: inline-block;
+	}
+	.div{
+		padding: 20px 20px;
+		background-color: gray;
+		display: inline-block;
+	}
+	.p{
+		padding: 20px 20px;
+		background-color: green;
+		display: inline-block;
+	}
+	</style>
 </head>
 <body>
-	<form>
-		<div>
-			<p>Hi, it's me</p>
+	<form class="form">
+		<div class="div">
+			<p class="p">Hi, it's me</p>
 		</div>
 	</form>
 
@@ -15,7 +32,15 @@
 	
 	var message = document.querySelectorAll('form,div,p');
 	console.log(message);
-	// message.onclick
+
+	for (var i = 0; i < message.length; i++) {
+		message[i].addEventListener('click', highlighter, true);
+	};
+
+function highlighter(){
+	// console.log(tagName)
+	console.log(this.tagName)
+}
 
 
 	</script>
