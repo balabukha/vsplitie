@@ -13,12 +13,26 @@
 		padding: 20px 20px;
 		background-color: gray;
 		display: inline-block;
+		position: relative;
+
 	}
 	.p{
 		padding: 20px 20px;
 		background-color: green;
 		display: inline-block;
 	}
+	.helper{
+		padding: 5px 5px;
+		background-color: #F6D155;
+		border-radius: 5px;
+		border: 1px solid #f2bd0d;
+		display: inline-block;
+		position: absolute;
+
+	}
+/*	.hidden{
+		display: none;
+	}*/
 	</style>
 </head>
 <body>
@@ -27,6 +41,22 @@
 			<p class="p">Hi, it's me</p>
 		</div>
 	</form>
+
+<div class="div">
+	<button data-count="counter" class="button_1">1</button>
+</div>
+<div class="div">
+	<button data-count="counter" class="button_2">1</button>
+</div>
+
+<div>
+	<button data-button-email="button-email">enter your email</button>
+	<input class="inputClass" hidden type="email" name="email">
+</div>
+
+<button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+<button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
 
 	<script type="text/javascript">
 	
@@ -40,7 +70,56 @@
 function highlighter(){
 	// console.log(tagName)
 	console.log(this.tagName)
-}
+};
+
+
+
+// var buttons = document.querySelectorAll('button');
+// for (var i = 0; i < buttons.length; i++) {
+// 	buttons[i].onclick = function(e){
+// 		console.log(this.innerHTML);
+// 		this.innerHTML = +this.innerHTML + 1;
+// 	}
+// }
+
+document.onclick = function(e){
+if (!event.target.hasAttribute('data-count')) return
+event.target.innerHTML++
+
+// console.log(event.target);
+// console.log(event.currentTarget);
+};
+
+
+
+document.onclick = function(e){
+if (event.target.hasAttribute('data-count')) {
+event.target.innerHTML++};
+
+if (event.target.hasAttribute('data-button-email')) {
+		var _elem = document.querySelector('.inputClass')
+	_elem.hidden = !_elem.hidden;}
+};
+
+
+ var newDiv = document.createElement('div');
+ newDiv.classList.add('.helper');
+ newDiv.innerHTML = target.outerHTML;
+ newDiv.parentNode.appendChild(newDiv);
+
+document.onmouseover = function(e){
+	var target  = event.target.getAttribute('data-tooltip');
+ if (target) {
+
+ }
+};
+
+document.onmouseout = function(e){
+ if (event.target.hasAttribute('data-tooltip')) {
+ 	return
+ }
+};
+
 
 
 	</script>
