@@ -24,10 +24,12 @@
 	.helper{
 		padding: 5px 5px;
 		background-color: #F6D155;
-		border-radius: 5px;
+		border-radius: 1px;
 		border: 1px solid #f2bd0d;
-		display: inline-block;
+		/*display: block;*/
 		position: absolute;
+		/*margin: 10px;*/
+		text-align: center;
 
 	}
 /*	.hidden{
@@ -92,7 +94,7 @@ event.target.innerHTML++
 
 
 
-document.onclick = function(e){
+document.onclick = function(event){
 if (event.target.hasAttribute('data-count')) {
 event.target.innerHTML++};
 
@@ -101,24 +103,44 @@ if (event.target.hasAttribute('data-button-email')) {
 	_elem.hidden = !_elem.hidden;}
 };
 
+//************************* HW
 
- var newDiv = document.createElement('div');
- newDiv.classList.add('.helper');
- newDiv.innerHTML = target.outerHTML;
- newDiv.parentNode.appendChild(newDiv);
+// function helper(target){
+//  var newDiv = document.createElement('div');
+//  newDiv.classList.add('.helper');
+//  newDiv.innerHTML = target;
+//  this.parentNode.target.appendChild(newDiv);
+// };
 
-document.onmouseover = function(e){
-	var target  = event.target.getAttribute('data-tooltip');
- if (target) {
+document.onmouseover = function(event){
+	var target  = event.target;
+	var helperNote  = target.getAttribute('data-tooltip');
 
- }
+ if (!helperNote) return;
+ 	// helper(target)
+ 	
+ 	var newElem = document.createElement('div');
+ 	console.log(newElem);
+ 	newElem.className = 'helper';
+ 	newElem.innerHTML = helperNote;
+ 	document.body.appendChild(newElem);
+
+ 	var coordElem = target.getBoundingClientRect()
+ 	var left = coordElem.left + target.offsetWidth/2;
+
+ 	console.log(left);
+
+
 };
 
-document.onmouseout = function(e){
+document.onmouseout = function(event){
  if (event.target.hasAttribute('data-tooltip')) {
  	return
  }
 };
+
+
+
 
 
 
