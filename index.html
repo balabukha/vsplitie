@@ -27,9 +27,9 @@
 		border-radius: 1px;
 		border: 1px solid #f2bd0d;
 		/*display: block;*/
-		position: absolute;
 		/*margin: 10px;*/
 		text-align: center;
+		position: fixed;
 
 	}
 /*	.hidden{
@@ -58,7 +58,7 @@
 
 <button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
 <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 	<script type="text/javascript">
 	
@@ -117,7 +117,6 @@ document.onmouseover = function(event){
 	var helperNote  = target.getAttribute('data-tooltip');
 
  if (!helperNote) return;
- 	// helper(target)
  	
  	var newElem = document.createElement('div');
  	console.log(newElem);
@@ -126,17 +125,25 @@ document.onmouseover = function(event){
  	document.body.appendChild(newElem);
 
  	var coordElem = target.getBoundingClientRect()
- 	var left = coordElem.left + target.offsetWidth/2;
-
+ 	var left = coordElem.left + (target.offsetWidth - newElem.offsetWidth)/2;
+ 	if (left < 0 ) left = 0;
  	console.log(left);
 
+ 	var top = coordElem.top - newElem.offsetHeight - 5;
+ 	if (top < 0) {
+ 		top = coordElem.top + target.offsetHeight + 5;
+ 	};
 
+newElem.style.left = left + 'px';
+newElem.style.top = top + 'px';
 };
 
 document.onmouseout = function(event){
  if (event.target.hasAttribute('data-tooltip')) {
- 	return
- }
+ 	var newElem = document.getElementsByClassName('helper');
+ 	console.log(newElem[0]);
+ 	document.body.removeChild(newElem[0]);
+ };
 };
 
 
